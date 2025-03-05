@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main className="flex flex-col min-h-screen items-center justify-between p-4 md:p-32 bg-rose-300">
-          <div className="w-full bg-blue-100 p-10 h-full rounded-md shadow-lg space-y-5">
+          <div className="w-full bg-amber-100/40 p-10 h-full rounded-md shadow-lg space-y-5">
             <div className="text-center p-5">
               <Link href={"/"} className="text-4xl font-bold text-rose-500">
                 Expense Tracker
