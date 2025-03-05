@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import Link from "next/link";
+import { Toaster } from "react-hot-toast";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,7 +28,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <main className="flex flex-col min-h-screen items-center justify-between p-4 md:p-32 bg-rose-300">
+          <div className="w-full bg-blue-100 p-10 h-full rounded-md shadow-lg space-y-5">
+            <div className="text-center p-5">
+              <Link href={"/"} className="text-4xl font-bold text-rose-500">
+                Expense Tracker
+              </Link>
+            </div>
+            <Toaster />
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   );
