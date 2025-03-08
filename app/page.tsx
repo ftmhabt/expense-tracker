@@ -9,8 +9,19 @@ import {
 } from "@/components/ui/table";
 import { CreditCard, DollarSign, Pencil } from "lucide-react";
 import Link from "next/link";
+import { getTransaction } from "../lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const transactions = await getTransaction();
+
+  const totalIncomes =
+    transactions
+      ?.filter((t) => t.type == "Income")
+      .reduce((acc, t) => acc + t.amount, 0) || 0;
+  const totalExpenses =
+    transactions
+      ?.filter((t) => t.type == "Expense")
+      .reduce((acc, t) => acc + t.amount, 0) || 0;
   return (
     <>
       {/*top section*/}
@@ -23,7 +34,7 @@ export default function Home() {
             <DollarSign className="h-4 w-4 text-rose-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">45$</div>
+            <div className="text-2xl font-bold">{totalExpenses}$</div>
           </CardContent>
         </Card>
         <Card className="w-full bg-amber-200/60">
@@ -32,7 +43,7 @@ export default function Home() {
             <CreditCard className="h-4 w-4 text-rose-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">45$</div>
+            <div className="text-2xl font-bold">{totalIncomes}$</div>
           </CardContent>
         </Card>
       </div>
@@ -48,15 +59,17 @@ export default function Home() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow className="hover:bg-rose-500/10">
-                <TableCell>g</TableCell>
-                <TableCell>g</TableCell>
-                <TableCell>
-                  <Link href={"/edit"}>
-                    <Pencil className="mr-2 h-4 w-4 cursor-pointer hover:scale-105 transition-all ease-in-out" />
-                  </Link>
-                </TableCell>
-              </TableRow>
+              {transactions?.map((item) => (
+                <TableRow key={item.id} className="hover:bg-rose-500/10">
+                  <TableCell>{item.description}</TableCell>
+                  <TableCell>{item.amount}</TableCell>
+                  <TableCell>
+                    <Link href={"/edit"}>
+                      <Pencil className="mr-2 h-4 w-4 cursor-pointer hover:scale-105 transition-all ease-in-out" />
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </CardContent>
