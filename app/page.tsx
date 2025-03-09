@@ -22,6 +22,8 @@ export default async function Home() {
     transactions
       ?.filter((t) => t.type == "Expense")
       .reduce((acc, t) => acc + t.amount, 0) || 0;
+
+  const FormatNumber = (num: number) => num.toLocaleString("en-US");
   return (
     <>
       {/*top section*/}
@@ -34,7 +36,9 @@ export default async function Home() {
             <DollarSign className="h-4 w-4 text-rose-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalExpenses}$</div>
+            <div className="text-2xl font-bold">
+              {FormatNumber(totalExpenses)}$
+            </div>
           </CardContent>
         </Card>
         <Card className="w-full bg-amber-200/60">
@@ -43,7 +47,9 @@ export default async function Home() {
             <CreditCard className="h-4 w-4 text-rose-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalIncomes}$</div>
+            <div className="text-2xl font-bold">
+              {FormatNumber(totalIncomes)}$
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -62,7 +68,7 @@ export default async function Home() {
               {transactions?.map((item) => (
                 <TableRow key={item.id} className="hover:bg-rose-500/10">
                   <TableCell>{item.description}</TableCell>
-                  <TableCell>{item.amount}</TableCell>
+                  <TableCell>{FormatNumber(item.amount)}</TableCell>
                   <TableCell>
                     <Link href={"/edit"}>
                       <Pencil className="mr-2 h-4 w-4 cursor-pointer hover:scale-105 transition-all ease-in-out" />
