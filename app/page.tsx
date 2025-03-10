@@ -10,6 +10,7 @@ import {
 import { CreditCard, DollarSign, Pencil } from "lucide-react";
 import Link from "next/link";
 import { getTransaction } from "../lib/data";
+import moment from "moment";
 
 export default async function Home() {
   const transactions = await getTransaction();
@@ -67,7 +68,12 @@ export default async function Home() {
             <TableBody>
               {transactions?.map((item) => (
                 <TableRow key={item.id} className="hover:bg-rose-500/10">
-                  <TableCell>{item.description}</TableCell>
+                  <TableCell>
+                    <div>{item.description}</div>
+                    <div>
+                      {moment(item.date.toString()).startOf("minute").fromNow()}
+                    </div>
+                  </TableCell>
                   <TableCell>{FormatNumber(item.amount)}</TableCell>
                   <TableCell>
                     <Link href={"/edit"}>
