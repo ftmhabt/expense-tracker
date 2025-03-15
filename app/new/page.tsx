@@ -20,6 +20,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { saveTransaction } from "../../lib/actions";
 
 export default function TransactionForm() {
   const form = useForm<TransactionFormValues>({
@@ -32,8 +33,8 @@ export default function TransactionForm() {
     },
   });
 
-  const onSubmit = (data: TransactionFormValues) => {
-    console.log("Transaction Data:", data);
+  const onSubmit = async (data: TransactionFormValues) => {
+    await saveTransaction(data);
   };
 
   return (
