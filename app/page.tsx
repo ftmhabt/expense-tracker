@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -11,6 +17,7 @@ import { CreditCard, DollarSign, Pencil } from "lucide-react";
 import Link from "next/link";
 import { getTransaction } from "../lib/data";
 import moment from "moment";
+import { buttonVariants } from "@/components/ui/button";
 
 export default async function Home() {
   const transactions = await getTransaction();
@@ -56,6 +63,20 @@ export default async function Home() {
       </div>
       {/*table*/}
       <Card className="w-full bg-amber-200/60 border-0">
+        <CardHeader className="flex-row justify-between">
+          <div>
+            <CardTitle>Transcations</CardTitle>
+            <CardDescription>Recent transcations</CardDescription>
+          </div>
+          <Link
+            href="/new"
+            className={buttonVariants({
+              className: "capitalize text-amber-100",
+            })}
+          >
+            add new transaction
+          </Link>
+        </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
