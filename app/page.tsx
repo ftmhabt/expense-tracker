@@ -97,7 +97,7 @@ export default async function Home() {
                   </TableCell>
                   <TableCell>{FormatNumber(item.amount)}</TableCell>
                   <TableCell>
-                    <Link href={"/edit"}>
+                    <Link href={"/edit/" + item.id}>
                       <Pencil className="mr-2 h-4 w-4 cursor-pointer hover:scale-105 transition-all ease-in-out" />
                     </Link>
                   </TableCell>
