@@ -8,9 +8,19 @@ export default async function page({
 }) {
   const { id } = await params;
   const transaction = await getTransactionById(id);
-  console.log(transaction);
-  return transaction?.id ? (
-    <TransactionForm />
+
+  return transaction && transaction?.id ? (
+    <TransactionForm
+      transaction={{
+        id: transaction.id || "",
+        amount: transaction.amount || 0,
+        type: transaction.type || "Expense",
+        description: transaction.description || "",
+        date: transaction.date || new Date(),
+        createdAt: transaction.createdAt || new Date(),
+        updatedAt: transaction.updatedAt || new Date(),
+      }}
+    />
   ) : (
     <div>no transaction found</div>
   );
