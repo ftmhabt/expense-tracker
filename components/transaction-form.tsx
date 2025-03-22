@@ -23,15 +23,21 @@ import {
 import { saveTransaction } from "../lib/actions";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { Transaction } from "@prisma/client";
 
-export default function TransactionForm() {
+export default function TransactionForm({
+  transaction,
+}: {
+  transaction?: Transaction;
+}) {
+  console.log(transaction);
   const form = useForm<TransactionFormValues>({
     resolver: zodResolver(transactionSchema),
     defaultValues: {
-      amount: 0,
-      type: "Expense",
-      description: "",
-      date: new Date(),
+      amount: transaction ? transaction?.amount : 0,
+      type: transaction ? transaction?.type : "Expense",
+      description: transaction ? transaction?.description : "",
+      date: transaction ? transaction?.date : new Date(),
     },
   });
 
@@ -40,7 +46,7 @@ export default function TransactionForm() {
   } = form;
 
   const onSubmit = async (data: TransactionFormValues) => {
-    await saveTransaction(data);
+    await saveTransaction(data, transaction?.id);
   };
 
   return (
