@@ -13,11 +13,11 @@ export default function TransactionDeleteButton({
 }) {
   async function handleClick() {
     await deleteTransactionById(record?.id)
-      .then((e) => toast.success("record deleted"))
+      .then(() => toast.success("record deleted"))
       .catch((e) => {
         console.log({ e });
         return toast.error("went wrong");
       });
   }
-  return <button onClick={handleClick}>{children}</button>;
+  return <div onClick={handleClick}>{children}</div>;
 }
