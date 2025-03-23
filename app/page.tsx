@@ -13,11 +13,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CreditCard, DollarSign, Pencil } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { CreditCard, DollarSign, Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { getTransaction } from "../lib/data";
 import moment from "moment";
 import { buttonVariants } from "@/components/ui/button";
+import TransactionDeleteButton from "@/components/transaction-delete-button";
 
 export default async function Home() {
   const transactions = await getTransaction();
@@ -96,10 +108,32 @@ export default async function Home() {
                     </div>
                   </TableCell>
                   <TableCell>{FormatNumber(item.amount)}</TableCell>
-                  <TableCell>
+                  <TableCell className="flex gap-2 mt-3">
                     <Link href={"/edit/" + item.id}>
                       <Pencil className="mr-2 h-4 w-4 cursor-pointer hover:scale-105 transition-all ease-in-out" />
                     </Link>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Trash2 className="mr-2 h-4 w-4 cursor-pointer hover:scale-105 transition-all ease-in-out text-rose-500" />
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Are you absolutely sure?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            delete your record.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <TransactionDeleteButton record={item}>
+                            <AlertDialogAction>Delete</AlertDialogAction>
+                          </TransactionDeleteButton>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </TableCell>
                 </TableRow>
               ))}
