@@ -48,7 +48,7 @@ npm run dev
 4. **View Summary:** Track total income and expenses at a glance.
 
 ## Demo
-[Live Demo](https://your-deployment-url.vercel.app)
+[Live Demo](https://expense-tracker-self-seven.vercel.app/)
 
 ## Future Enhancements
 - User authentication for personalized tracking
