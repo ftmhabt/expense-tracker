@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Expense Tracker
 
-## Getting Started
+## Overview
+The **Expense Tracker** is a modern web application designed to help users efficiently track their incomes and expenses. Built with **Next.js, TypeScript, Prisma, and ShadCN**, it offers an intuitive interface for managing transactions with ease. This project demonstrates strong proficiency in **full-stack development**, handling CRUD operations, and integrating modern UI components.
 
-First, run the development server:
+## Features
+- **User-Friendly UI:** Designed with ShadCN and TailwindCSS for a sleek and responsive experience.
+- **Transaction Management:** Add, edit, and delete transactions with real-time updates.
+- **Income & Expense Tracking:** View categorized financial summaries.
+- **Data Persistence:** Utilizes **PostgreSQL** with **Prisma ORM** for efficient data storage.
+- **Validation & Error Handling:** Ensures data integrity using **Zod & React Hook Form**.
+- **Optimized Performance:** Server-side rendering with **Next.js App Router**.
+- **Notifications:** Real-time feedback using **React Hot Toast**.
+
+## Tech Stack
+- **Frontend:** Next.js (App Router), React, TypeScript, TailwindCSS, ShadCN
+- **Backend:** Next.js API Routes, Prisma ORM, PostgreSQL
+- **Validation:** Zod, React Hook Form
+- **State Management:** React Hooks
+- **Notifications:** React Hot Toast
+- **Deployment:** Vercel
+
+## Installation
+To set up the project locally:
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/expense-tracker.git
+cd expense-tracker
+
+# Install dependencies
+npm install
+
+# Set up environment variables (DATABASE_URL, etc.)
+cp .env.example .env
+
+# Run Prisma migrations
+npx prisma migrate dev
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
+1. **Add a Transaction:** Click "Add New Transaction" and enter details.
+2. **Edit a Transaction:** Click the edit icon to modify existing transactions.
+3. **Delete a Transaction:** Click the delete icon and confirm deletion.
+4. **View Summary:** Track total income and expenses at a glance.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo
+[Live Demo](https://your-deployment-url.vercel.app)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Future Enhancements
+- User authentication for personalized tracking
+- Monthly budget setting and financial insights
+- CSV export for transaction history
 
-## Learn More
+## Contact
+For inquiries or collaboration opportunities, reach out via [LinkedIn](https://www.linkedin.com/in/fatemeh-abtahi/) or [Email](mailto:ftmh.a78@gmail.com).
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
